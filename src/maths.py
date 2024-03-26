@@ -1,7 +1,7 @@
 from .error_handling import *
 from .matrix_operations import *
 
-NB_ITER = 100
+NB_ITER = 50
 
 def compute_exp(matrix):
     result = get_identity_matrix(len(matrix))
@@ -9,10 +9,15 @@ def compute_exp(matrix):
         result = add_matrices(result, divide_matrix(power_matrix(matrix, n), math.factorial(n)))
     return result
 
-def compute_cos(args):
-    args.pop(0)
-    matrix = create_matrix(args)
-    pass
+def compute_cos(matrix):
+    result = get_identity_matrix(len(matrix))
+    for n in range(1 ,NB_ITER):
+        print(result[1][1])
+        if n % 2 == 0:
+            result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
+        else:
+            result = substract_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
+    return result
 
 def compute_sin(args):
     args.pop(0)
