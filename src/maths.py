@@ -18,20 +18,26 @@ def compute_cos(matrix):
             result = substract_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
     return result
 
-def compute_sin(args):
-    args.pop(0)
-    matrix = create_matrix(args)
-    pass
+def compute_sin(matrix):
+    result = matrix
+    for n in range(2, NB_ITER):
+        if n % 2 == 0:
+            result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
+        else:
+            result = substract_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
+    return result
 
-def compute_cosh(args):
-    args.pop(0)
-    matrix = create_matrix(args)
-    pass
+def compute_cosh(matrix):
+    result = get_identity_matrix(len(matrix))
+    for n in range(1, NB_ITER):
+        result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
+    return result
 
-def compute_sinh(args):
-    args.pop(0)
-    matrix = create_matrix(args)
-    pass
+def compute_sinh(matrix):
+    result = matrix
+    for n in range(1, NB_ITER):
+        result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
+    return result
 
 def detect_function(args):
     float_args = [float(args[i]) for i in range(2, len(args))]
