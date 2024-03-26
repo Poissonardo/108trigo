@@ -2,6 +2,7 @@
 import sys
 from src.error_handling import *
 from src.maths import *
+from src.matrix_operations import *
 
 def main(args):
     nb_args = len(args)
@@ -12,9 +13,11 @@ def main(args):
     elif nb_args < 6:
         display_error("Not enough arguments, takes a minimum of six arguments.")
         exit(84)
-    elif (nb_args - 1) % 5 != 0:
-        display_error("Number of arguments should be a multiple of 5, arguments are valid and logical when in groups of 5. Please refer to help (-h).")
-        exit(84)
+    args.pop(0)
+    args.pop(0)
+    matrix = create_matrix(args)
+    for line in matrix:
+        print(line)
 
 if __name__ == '__main__':
     main(sys.argv)
