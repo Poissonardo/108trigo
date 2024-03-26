@@ -12,7 +12,6 @@ def compute_exp(matrix):
 def compute_cos(matrix):
     result = get_identity_matrix(len(matrix))
     for n in range(1 ,NB_ITER):
-        print(result[1][1])
         if n % 2 == 0:
             result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
         else:
