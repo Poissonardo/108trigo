@@ -5,44 +5,71 @@ from .args_handling import *
 NB_ITER = 50
 
 def compute_exp(matrix):
-    result = get_identity_matrix(len(matrix))
-    for n in range(1, NB_ITER):
-        result = add_matrices(result, divide_matrix(power_matrix(matrix, n), math.factorial(n)))
-    return result
+    try:
+        result = get_identity_matrix(len(matrix))
+        for n in range(1, NB_ITER):
+            result = add_matrices(result, divide_matrix(power_matrix(matrix, n), math.factorial(n)))
+        return result
+    except:
+        display_error("Cannot compute exponential, matrix is too large.")
+        exit(84)
 
 def compute_cos(matrix):
-    result = get_identity_matrix(len(matrix))
-    for n in range(1 ,NB_ITER):
-        if n % 2 == 0:
-            result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
-        else:
-            result = substract_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
-    return result
+    try:
+        result = get_identity_matrix(len(matrix))
+        for n in range(1 ,NB_ITER):
+            if n % 2 == 0:
+                result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
+            else:
+                result = substract_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
+        return result
+    except:
+        display_error("Cannot compute cos, matrix is too large.")
+        exit(84)
+
 
 def compute_sin(matrix):
-    result = matrix
-    for n in range(2, NB_ITER):
-        if n % 2 == 0:
-            result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
-        else:
-            result = substract_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
-    return result
+    try:
+        result = matrix
+        for n in range(2, NB_ITER):
+            if n % 2 == 0:
+                result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
+            else:
+                result = substract_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
+        return result
+    except:
+        display_error("Cannot compute sin, matrix is too large.")
+        exit(84)
+
 
 def compute_cosh(matrix):
-    result = get_identity_matrix(len(matrix))
-    for n in range(1, NB_ITER):
-        result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
-    return result
+    try:
+        result = get_identity_matrix(len(matrix))
+        for n in range(1, NB_ITER):
+            result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n), math.factorial(2 * n)))
+        return result
+    except:
+        display_error("Cannot compute cosh, matrix is too large.")
+        exit(84)
 
 def compute_sinh(matrix):
-    result = matrix
-    for n in range(1, NB_ITER):
-        result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
-    return result
+    try:
+        result = matrix
+        for n in range(1, NB_ITER):
+            result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
+        return result
+    except:
+        display_error("Cannot compute sinh, matrix is too large.")
+        exit(84)
+
 
 def detect_function(args):
     float_args = args_to_float(args)
-    base_matrix = create_matrix(float_args)
+    try:
+        base_matrix = create_matrix(float_args)
+    except:
+        display_error("Cannot create matrix, invalid values.")
+        exit(84)
     match args[1]:
         case "EXP":
             result = compute_exp(base_matrix)
