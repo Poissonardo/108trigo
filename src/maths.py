@@ -1,5 +1,6 @@
 from .error_handling import *
 from .matrix_operations import *
+from .args_handling import *
 
 NB_ITER = 50
 
@@ -40,7 +41,7 @@ def compute_sinh(matrix):
     return result
 
 def detect_function(args):
-    float_args = [float(args[i]) for i in range(2, len(args))]
+    float_args = args_to_float(args)
     base_matrix = create_matrix(float_args)
     match args[1]:
         case "EXP":
