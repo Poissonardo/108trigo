@@ -13,20 +13,7 @@ def main(args):
     elif nb_args < 6:
         display_error("Not enough arguments, takes a minimum of six arguments.")
         exit(84)
-    args.pop(0)
-    match args[0]:
-        case "EXP":
-            compute_exp(args)
-        case "COS":
-            compute_cos(args)
-        case "SIN":
-            compute_sin(args)
-        case "COSH":
-            compute_cosh(args)
-        case "SINH":
-            compute_sinh(args)
-        case _:
-            display_error("Unknown fun argument \"{}\", please refer to help for known fun.".format(args[0]))
+    detect_function(args)
 
 if __name__ == '__main__':
     main(sys.argv)
