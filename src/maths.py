@@ -31,7 +31,7 @@ def compute_cos(matrix):
 def compute_sin(matrix):
     try:
         result = matrix
-        for n in range(2, NB_ITER):
+        for n in range(1, NB_ITER):
             if n % 2 == 0:
                 result = add_matrices(result, divide_matrix(power_matrix(matrix, 2 * n + 1), math.factorial(2 * n + 1)))
             else:
