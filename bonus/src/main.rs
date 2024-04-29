@@ -5,6 +5,7 @@ use math_logic::detect_function;
 mod error_handling;
 use error_handling::display_error;
 mod math_logic;
+mod matrix_manipulation;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
